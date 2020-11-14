@@ -1,6 +1,6 @@
 {
 	"id": "com.twinkly",
-	"sdk": 2,
+	"sdk": 3,
 	"brandColor": "#918167",
 	"name": {
 		"en": "Twinkly",
@@ -10,8 +10,8 @@
 		"en": [ "Twinkly", "Christmas", "Light", "LED" ],
 		"nl": [ "Twinkly", "Kerst", "Verlichting", "LED" ]
 	},
-	"version": "1.1.1",
-	"compatibility": ">=3.0.0",
+	"version": "3.0.0",
+	"compatibility": ">=5.0.0",
 	"author": {
 		"name": "Jelger Haanstra",
 		"email": "homey@solidewebservices.com",
