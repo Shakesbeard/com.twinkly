@@ -10,6 +10,12 @@ class TwinklyDevice extends Homey.Device {
 
     this.setAvailable();
 
+    // ADD AND REMOVE CAPABILITIES
+    // TODO: REMOVE AFTER 3.1.0
+    if (!this.hasCapability('dim')) {
+      this.addCapability('dim');
+    }
+
     // START POLLING
     this.updateToken();
     this.pollDevice();
@@ -26,6 +32,11 @@ class TwinklyDevice extends Homey.Device {
       } else {
         return this.util.sendCommand('/xled/v1/led/mode', this.getStoreValue("token"), 'POST', JSON.stringify({"mode":"off"}), this.getSetting('address'));
       }
+    });
+
+    this.registerCapabilityListener('dim', async (value, opts) => {
+      const dim = value * 100;
+      return util.sendCommand('/xled/v1/led/out/brightness', this.getStoreValue("token"), 'POST', JSON.stringify({"mode":"enabled", "type": "A", "value": dim}), this.getSetting('address'));
     });
 
   }
@@ -68,17 +79,25 @@ class TwinklyDevice extends Homey.Device {
 
     this.pollingInterval = setInterval(async () => {
       try {
-        let result = await this.util.sendCommand('/xled/v1/led/mode', this.getStoreValue("token"), 'GET', '', this.getSetting('address'));
+        let result_onoff = await this.util.sendCommand('/xled/v1/led/mode', this.getStoreValue("token"), 'GET', '', this.getSetting('address'));
+        let result_dim = await util.sendCommand('/xled/v1/led/out/brightness', this.getStoreValue("token"), 'GET', '', this.getSetting('address'));
         if (!this.getAvailable()) {
           this.setAvailable();
         }
 
-        let onoff = result.mode === 'off' ? false : true;
+        let onoff = result_onoff.mode === 'off' ? false : true;
+        let dim = result_dim.value / 100;
 
         // capability onoff
         if (onoff != this.getCapabilityValue('onoff')) {
           this.setCapabilityValue('onoff', onoff);
         }
+
+        // capability dim
+        if (dim != this.getCapabilityValue('dim')) {
+          this.setCapabilityValue('dim', dim);
+        }
+        
       } catch (error) {
         if (error == 'Error: 401') {
           this.updateToken();

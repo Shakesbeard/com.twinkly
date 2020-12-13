@@ -10,7 +10,7 @@
 		"en": [ "Twinkly", "Christmas", "Light", "LED" ],
 		"nl": [ "Twinkly", "Kerst", "Verlichting", "LED" ]
 	},
-	"version": "3.0.2",
+	"version": "3.0.4",
 	"compatibility": ">=5.0.0",
 	"author": {
 		"name": "Jelger Haanstra",
@@ -55,7 +55,8 @@
 			},
 			"class": "light",
 			"capabilities": [
-				"onoff"
+				"onoff",
+        "dim"
 			],
 			"pair": [
         {

@@ -10,5 +10,8 @@
   },
   "3.0.2": {
     "en": "Update to SDK3 (require Homey firmware 5.x) and some minor improvements."
+  },
+  "3.0.4": {
+    "en": "Update to SDK3 (require Homey firmware 5.x), added dimming capability and some minor improvements."
   }
 }
