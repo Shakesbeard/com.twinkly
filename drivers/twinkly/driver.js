@@ -3,7 +3,6 @@
 const Homey = require('homey');
 const dgram = require('dgram');
 const message = Buffer.from('\x01discover');
-const client = dgram.createSocket('udp4');
 var devices = [];
 var added_devices = [];
 
@@ -16,6 +15,8 @@ class TwinklyDriver extends Homey.Driver {
   discoverDevices() {
     return new Promise(async (resolve, reject) => {
       try {
+        let client = dgram.createSocket('udp4');
+
         client.bind(5555, () => {
           client.setBroadcast(true);
           client.setMulticastTTL(255);
@@ -51,8 +52,8 @@ class TwinklyDriver extends Homey.Driver {
 
         setTimeout(() => {
           clearInterval(broadcastInterval);
-          return resolve(devices);
           client.close();
+          return resolve(devices);
         }, 6000);
       } catch (error) {
         return reject(error);
