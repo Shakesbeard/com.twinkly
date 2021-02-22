@@ -10,7 +10,7 @@
 		"en": [ "Twinkly", "Christmas", "Light", "LED" ],
 		"nl": [ "Twinkly", "Kerst", "Verlichting", "LED" ]
 	},
-	"version": "3.0.4",
+	"version": "3.0.5",
 	"compatibility": ">=5.0.0",
 	"author": {
 		"name": "Jelger Haanstra",
@@ -31,8 +31,9 @@
   "source": "https://github.com/jghaanstra/com.twinkly",
   "homepage": "https://community.athom.com/t/4386",
 	"images": {
-		"large": "./assets/images/large.jpg",
-		"small": "./assets/images/small.jpg"
+		"small": "./assets/images/small.jpg",
+    "large": "./assets/images/large.jpg",
+    "xlarge": "./assets/images/xlarge.jpg"
 	},
 	"category": "lights",
 	"description": {
@@ -50,8 +51,9 @@
 				"nl": "Twinkly"
 			},
 			"images": {
-				"large": "drivers/twinkly/assets/images/large.jpg",
-				"small": "drivers/twinkly/assets/images/small.jpg"
+				"small": "drivers/twinkly/assets/images/small.jpg",
+        "large": "drivers/twinkly/assets/images/large.jpg",
+        "xlarge": "drivers/twinkly/assets/images/xlarge.jpg"
 			},
 			"class": "light",
 			"capabilities": [
